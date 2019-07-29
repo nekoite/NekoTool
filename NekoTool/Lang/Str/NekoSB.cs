@@ -102,6 +102,16 @@ namespace NekoTool.Lang.Str
 			return this;
 		}
 
+		public NekoSB DeleteLastChars(int num)
+		{
+			if (num <= 0)
+				return this;
+			if (num > sb.Length)
+				num = sb.Length;
+			sb.Remove(sb.Length - num, num);
+			return this;
+		}
+
 		public NekoSB Insert(int index, char c)
 		{
 			sb.Insert(index, c);
@@ -111,6 +121,36 @@ namespace NekoTool.Lang.Str
 		public NekoSB Insert(int index, string s)
 		{
 			sb.Insert(index, s);
+			return this;
+		}
+
+		public NekoSB Clear()
+		{
+			sb.Clear();
+			return this;
+		}
+
+		public NekoSB Replace(int idx, char c)
+		{
+			sb[idx] = c;
+			return this;
+		}
+
+		public NekoSB Replace(int idx, string val)
+		{
+			int count = 0;
+			while (idx < sb.Length && count < val.Length)
+			{
+				sb[idx] = val[count];
+				idx++;
+				count++;
+			}
+
+			if (count < val.Length)
+			{
+				sb.Append(val.Substring(count));
+			}
+
 			return this;
 		}
 
@@ -172,6 +212,11 @@ namespace NekoTool.Lang.Str
 		public override int GetHashCode()
 		{
 			return (sb != null ? sb.GetHashCode() : 0);
+		}
+
+		private bool IsOutOfBounds(int index)
+		{
+			return index < 0 || index >= sb.Length;
 		}
 	}
 }

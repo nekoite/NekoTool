@@ -53,6 +53,12 @@ namespace NekoTool.Maths.Utils
 			return random.Next(max);
 		}
 
+		/// <summary>
+		/// Includes min; excludes max.
+		/// </summary>
+		/// <param name="min"></param>
+		/// <param name="max"></param>
+		/// <returns></returns>
 		public static int NextInt(int min, int max)
 		{
 			if (random == null)
@@ -71,6 +77,11 @@ namespace NekoTool.Maths.Utils
 		public static int NextInt(IntRange intRange)
 		{
 			return NextInt(intRange.Min, intRange.Max + 1);
+		}
+
+		public static int NextIntInclusive(int min, int max)
+		{
+			return NextInt(min, max + 1);
 		}
 	}
 }

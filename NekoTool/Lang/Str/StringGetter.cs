@@ -55,5 +55,34 @@ namespace NekoTool.Lang.Str
 			String pre = (si ? "kMGTPE" : "KMGTPE")[exp - 1] + (si ? "" : "i");
 			return string.Format("{0:F" + digits + "} {1}B", bytes / Math.Pow(unit, exp), pre);
 		}
+
+		public static string GetHexString(byte[] arr)
+		{
+			var sb = new NekoSB();
+			for (int i = 0; i < arr.Length; i++)
+			{
+				sb.Append(arr[i].ToString("X2"));
+			}
+			return sb.ToString();
+		}
+
+		/// <summary>
+		/// Gets the hex representation of a byte array.
+		/// </summary>
+		/// <param name="arr"></param>
+		/// <param name="seperator"></param>
+		/// <returns></returns>
+		public static string GetHexString(byte[] arr, string seperator)
+		{
+			var sb = new NekoSB();
+			for (int i = 0; i < arr.Length; i++)
+			{
+				sb.Append(arr[i].ToString("X2"));
+				sb.Append(seperator);
+			}
+
+			sb.DeleteLastChars(seperator.Length);
+			return sb.ToString();
+		}
 	}
 }

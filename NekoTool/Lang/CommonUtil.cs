@@ -23,5 +23,30 @@ namespace NekoTool.Lang
 			dtDateTime = dtDateTime.AddSeconds(timestamp).ToLocalTime();
 			return dtDateTime;
 		}
+
+		public static T CreateInstance<T>()
+		{
+			return Activator.CreateInstance<T>();
+		}
+
+		public static object CreateInstance(Type t)
+		{
+			return Activator.CreateInstance(t);
+		}
+
+		public static T CreateInstanceOf<T>(T refObj)
+		{
+			return Activator.CreateInstance<T>();
+		}
+
+		public static T CreateInstance<T>(params object[] args)
+		{
+			return (T) Activator.CreateInstance(typeof(T), args);
+		}
+
+		public static T CreateInstanceOf<T>(T refObj, params object[] args)
+		{
+			return (T) Activator.CreateInstance(typeof(T), args);
+		}
 	}
 }
