@@ -22,4 +22,4 @@ deploy:
   tag: v$(appveyor_build_version)
   release: v$(appveyor_build_version)
   auth_token:
-    secure: KSni4u2XyvmHoWv8dyM7z16yHZk9EpAhYDVE5QyhzG3owWNTRD1MqPjiJbEbRDGf
+    secure: jQxrsBnP05pmmYqIGPMTXj+zU2Stshj8H83Vhc9fMDZYBw0QMHHAP4jfxK9oEP2M
