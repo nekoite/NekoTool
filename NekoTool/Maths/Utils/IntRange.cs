@@ -2,7 +2,10 @@
 
 namespace NekoTool.Maths.Utils
 {
-	public class IntRange : ICloneable, IEquatable<IntRange>
+	/// <summary>
+	/// Integer range class.
+	/// </summary>
+	public struct IntRange : ICloneable, IEquatable<IntRange>
 	{
 		public int Max { get; }
 
@@ -44,11 +47,21 @@ namespace NekoTool.Maths.Utils
 			return min;
 		}
 
+		/// <summary>
+		/// Gets the union of multiple intranges.
+		/// </summary>
+		/// <param name="intRanges"></param>
+		/// <returns></returns>
 		public static IntRange RangeMinMax(params IntRange[] intRanges)
 		{
 			return new IntRange(RangeMin(intRanges), RangeMax(intRanges));
 		}
 
+		/// <summary>
+		/// Checks if the other range is a subset (subrange) of the current one.
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
 		public bool IsSubrange(IntRange other)
 		{
 			return other.Min >= Min && other.Max <= Max;
@@ -60,11 +73,13 @@ namespace NekoTool.Maths.Utils
 		}
 
 		/// <summary>
-		/// Same as Union.
+		/// Same as <see cref="Union"/>. Gets the union of integer ranges.
+		/// Throws an error if ranges are disjoint.
 		/// </summary>
 		/// <param name="r1"></param>
 		/// <param name="r2"></param>
 		/// <returns></returns>
+		/// <exception cref="ArgumentException"></exception>
 		public static IntRange operator +(IntRange r1, IntRange r2)
 		{
 			if (IsDisjoint(r1, r2))
@@ -76,6 +91,14 @@ namespace NekoTool.Maths.Utils
 			return new IntRange(min, max);
 		}
 
+		/// <summary>
+		/// Same as <see cref="op_Addition"/>. Gets the union of integer ranges.
+		/// Throws an error if ranges are disjoint.
+		/// </summary>
+		/// <param name="r1"></param>
+		/// <param name="r2"></param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentException"></exception>
 		public static IntRange Union(IntRange r1, IntRange r2)
 		{
 			return r1 + r2;
@@ -117,7 +140,6 @@ namespace NekoTool.Maths.Utils
 
 		public bool Equals(IntRange other)
 		{
-			if (other == null) return false;
 			return other.Max == Max && other.Min == Min;
 		}
 
