@@ -4,14 +4,14 @@ using System.Text;
 namespace NekoTool.Lang.Str
 {
 	/// <summary>
-	/// A better <see cref="StringBuilder"/>
+	/// A better <see cref="StringBuilder"/>. Now with Neko!
 	/// </summary>
 	public class NekoSB
 	{
 		private readonly StringBuilder sb;
 
 		/// <summary>
-		/// Gets the char at the index.
+		/// Gets and sets the char at the index.
 		/// </summary>
 		/// <param name="i"></param>
 		/// <returns></returns>
@@ -19,6 +19,18 @@ namespace NekoTool.Lang.Str
 		{
 			get => sb[i];
 			set => sb[i] = value;
+		}
+
+		/// <summary>
+		/// Gets and sets a part of the builder.
+		/// </summary>
+		/// <param name="start"></param>
+		/// <param name="length"></param>
+		/// <returns></returns>
+		public string this[int start, int length]
+		{
+			get => sb.ToString().Substring(start, length);
+			set => sb.Remove(start, length).Insert(start, value);
 		}
 
 		/// <summary>
@@ -86,6 +98,12 @@ namespace NekoTool.Lang.Str
 			return this;
 		}
 
+		public NekoSB AppendLine(object o)
+		{
+			sb.AppendLine(o.ToString());
+			return this;
+		}
+
 		public NekoSB DeleteCharAt(int idx)
 		{
 			sb.Remove(idx, 1);
@@ -136,20 +154,17 @@ namespace NekoTool.Lang.Str
 			return this;
 		}
 
-		public NekoSB Replace(int idx, string val)
+		/// <summary>
+		/// [Obsolete] Use <see cref="this[int, int]"/>.
+		/// </summary>
+		/// <param name="start"></param>
+		/// <param name="length"></param>
+		/// <param name="val"></param>
+		/// <returns></returns>
+		[Obsolete("Use this[int, int]", false)]
+		public NekoSB Replace(int start, int length, string val)
 		{
-			int count = 0;
-			while (idx < sb.Length && count < val.Length)
-			{
-				sb[idx] = val[count];
-				idx++;
-				count++;
-			}
-
-			if (count < val.Length)
-			{
-				sb.Append(val.Substring(count));
-			}
+			this[start, length] = val;
 
 			return this;
 		}
@@ -176,12 +191,32 @@ namespace NekoTool.Lang.Str
 
 		public static bool operator ==(NekoSB sb1, NekoSB sb2)
 		{
-			return sb1 != null && sb1.Equals(sb2);
+			return sb1 is null ? sb2 is null : !(sb2 is null) && sb1.ToString() == sb2.ToString();
 		}
 
 		public static bool operator !=(NekoSB sb1, NekoSB sb2)
 		{
 			return !(sb1 == sb2);
+		}
+
+		public static bool operator ==(NekoSB sb1, StringBuilder sb2)
+		{
+			return sb1 is null ? sb2 is null : !(sb2 is null) && sb1.ToString() == sb2.ToString();
+		}
+
+		public static bool operator !=(NekoSB sb1, StringBuilder sb2)
+		{
+			return !(sb1 == sb2);
+		}
+
+		public static bool operator ==(NekoSB sb1, string s)
+		{
+			return !(sb1 is null) && sb1.ToString() == s;
+		}
+
+		public static bool operator !=(NekoSB sb1, string s)
+		{
+			return !(sb1 == s);
 		}
 
 		public static implicit operator string(NekoSB sb)

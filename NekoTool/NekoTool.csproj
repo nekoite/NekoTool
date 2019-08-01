@@ -50,6 +50,9 @@
     <Compile Include="IO\IOUtil.cs" />
     <Compile Include="Lang\CommonUtil.cs" />
     <Compile Include="Lang\Convert.cs" />
+    <Compile Include="Lang\Culture\CultInfoAttribute.cs" />
+    <Compile Include="Lang\Culture\CultureInfoId.cs" />
+    <Compile Include="Lang\Culture\CultureUtil.cs" />
     <Compile Include="Lang\FontLoader.cs" />
     <Compile Include="Lang\Reflection\AttributeUtil.cs" />
     <Compile Include="Lang\Str\CodePage.cs" />

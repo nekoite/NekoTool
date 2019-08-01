@@ -6,6 +6,12 @@ namespace NekoTool.Lang.Str
 {
 	public static class StringGetter
 	{
+		/// <summary>
+		/// Gets a string representation of a list.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="list"></param>
+		/// <returns></returns>
 		public static string GetString<T>(this IEnumerable<T> list)
 		{
 			var sb = new StringBuilder();
@@ -22,6 +28,13 @@ namespace NekoTool.Lang.Str
 			return sb.ToString();
 		}
 
+		/// <summary>
+		/// Gets a string representation of a dictionary.
+		/// </summary>
+		/// <typeparam name="K"></typeparam>
+		/// <typeparam name="V"></typeparam>
+		/// <param name="dict"></param>
+		/// <returns></returns>
 		public static string GetString<K, V>(this IDictionary<K, V> dict)
 		{
 			var sb = new StringBuilder();
@@ -79,7 +92,19 @@ namespace NekoTool.Lang.Str
 		/// <returns></returns>
 		public static string GetHexString(byte[] arr, string separator)
 		{
+			if (separator == "-") return GetHexStringBuiltin(arr);
 			return BitConverter.ToString(arr).ToUpper().Replace("-", separator);
+		}
+
+		/// <summary>
+		/// Same as <code>GetHexString(arr, "-")</code>.
+		/// Same as the builtin <see cref="BitConverter.ToString(byte[])"/>.
+		/// </summary>
+		/// <param name="arr"></param>
+		/// <returns></returns>
+		public static string GetHexStringBuiltin(byte[] arr)
+		{
+			return BitConverter.ToString(arr);
 		}
 	}
 }
