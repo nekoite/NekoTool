@@ -21,6 +21,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>
+    </DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +33,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Release\NekoTool.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -45,6 +51,9 @@
     <Compile Include="Lang\CommonUtil.cs" />
     <Compile Include="Lang\Convert.cs" />
     <Compile Include="Lang\FontLoader.cs" />
+    <Compile Include="Lang\Reflection\AttributeUtil.cs" />
+    <Compile Include="Lang\Str\CodePage.cs" />
+    <Compile Include="Lang\Str\EncodingNameAttribute.cs" />
     <Compile Include="Lang\Str\EncodingUtil.cs" />
     <Compile Include="Lang\Str\StringGetter.cs" />
     <Compile Include="Lang\Str\NekoSB.cs" />
@@ -54,6 +63,7 @@
     <Compile Include="Maths\Utils\MathUtil.cs" />
     <Compile Include="NekoTool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unsafe\UnsafeUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NekoTool.licenseheader" />

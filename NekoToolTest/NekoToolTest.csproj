@@ -63,6 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crypto\SecurityUtilTest.cs" />
+    <Compile Include="Lang\Str\EncodingUtilTest.cs" />
+    <Compile Include="Lang\Str\StringGetterTest.cs" />
+    <Compile Include="NekoToolTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
