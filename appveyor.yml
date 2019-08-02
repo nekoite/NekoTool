@@ -1,4 +1,4 @@
-version: 0.1.6
+version: 0.1.6.1
 skip_non_tags: true
 image: Visual Studio 2017
 configuration: Release
@@ -14,9 +14,9 @@ build:
 test_script:
 - OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\NekoToolTest\bin\Release\NekoToolTest.dll -noshadow" -filter:"+[NekoTool*]* -[NekoToolTest*]*" -output:".\test_coverage.xml"
 - codecov -f "test_coverage.xml"
-#artifacts:
-#- path: NekoTool\bin\$(configuration)
-#  name: NekoTool-v$(appveyor_build_version)
+artifacts:
+- path: NekoTool\bin\$(configuration)
+  name: NekoTool-v$(appveyor_build_version)
 deploy:
 - provider: GitHub
   tag: v$(appveyor_build_version)
