@@ -66,14 +66,14 @@
     <Compile Include="Maths\Utils\IntRange.cs" />
     <Compile Include="Maths\Utils\MathUtil.cs" />
     <Compile Include="NekoTool.cs" />
+    <Compile Include="Net\HttpRequestUtil.cs" />
+    <Compile Include="Net\UriUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unsafe\UnsafeUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NekoTool.licenseheader" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Net\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
