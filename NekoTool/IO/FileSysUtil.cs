@@ -7,7 +7,7 @@ namespace NekoTool.IO
 	public static class FileSysUtil
 	{
 		/// <summary>
-		/// 确保文件夹存在，如果不存在则创建一个
+		/// Ensures the existence of a directory. If it does not exist, then create one.
 		/// </summary>
 		/// <param name="path"></param>
 		public static void EnsureDirExists(string path)

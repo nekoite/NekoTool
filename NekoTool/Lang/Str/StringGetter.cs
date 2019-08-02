@@ -106,5 +106,40 @@ namespace NekoTool.Lang.Str
 		{
 			return BitConverter.ToString(arr);
 		}
+
+		public static string GetBase64String(byte[] data)
+		{
+			return System.Convert.ToBase64String(data);
+		}
+
+		public static string GetBase64String(string orig)
+		{
+			return System.Convert.ToBase64String(Encoding.UTF8.GetBytes(orig));
+		}
+
+		public static string GetBase64String(string orig, CodePage cp)
+		{
+			return GetBase64String(orig, Encoding.GetEncoding((int) cp));
+		}
+
+		public static string GetBase64String(string orig, Encoding enc)
+		{
+			return System.Convert.ToBase64String(enc.GetBytes(orig));
+		}
+
+		public static string FromBase64String(string base64)
+		{
+			return Encoding.UTF8.GetString(System.Convert.FromBase64String(base64));
+		}
+
+		public static string FromBase64String(string base64, CodePage cp)
+		{
+			return FromBase64String(base64, Encoding.GetEncoding((int) cp));
+		}
+
+		public static string FromBase64String(string base64, Encoding enc)
+		{
+			return enc.GetString(System.Convert.FromBase64String(base64));
+		}
 	}
 }

@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using NekoTool.Lang.Str;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace NekoToolTest.Lang.Str
 {
 	public class StringGetterTest
 	{
+		private ITestOutputHelper output;
+
+		public StringGetterTest(ITestOutputHelper output)
+		{
+			this.output = output;
+		}
+
 		[Fact]
 		public void GetHumanReadableByteCountTest()
 		{
@@ -49,6 +57,20 @@ namespace NekoToolTest.Lang.Str
 			Dictionary<string, int> data1 = new Dictionary<string, int> { { "Hi", 3 }, { "Bye", 4 } };
 			const string fact1 = "(System.String, System.Int32)[ {Hi, 3}, {Bye, 4} ]";
 			Assert.Equal(fact1, data1.GetString());
+		}
+
+		[Theory]
+		[InlineData("SGVsbG8sIHdvcmxkIQ==", "Hello, world!")]
+		[InlineData("xOO6w6OsysC956Oh", "你好，世界！", CodePage.Gb2312)]
+		public void FromBase64StringTest(string base64, string fact, CodePage cp = CodePage.Default)
+		{
+			if (cp == CodePage.Default)
+				Assert.Equal(fact, StringGetter.FromBase64String(base64));
+			else
+			{
+				Assert.Equal(fact, StringGetter.FromBase64String(base64, cp));
+				Assert.Equal(fact, StringGetter.FromBase64String(base64, EncodingUtil.GetEncoding(cp)));
+			}
 		}
 	}
 }

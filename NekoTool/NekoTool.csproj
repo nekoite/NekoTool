@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crypto\SecurityUtil.cs" />
+    <Compile Include="Experimental\Casting.cs" />
     <Compile Include="Experimental\Functional.cs" />
     <Compile Include="IO\FileSysUtil.cs" />
     <Compile Include="IO\IOUtil.cs" />
