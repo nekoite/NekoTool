@@ -1,4 +1,4 @@
-version: 0.1.6.1-c
+version: 0.1.6.1-d
 #skip_non_tags: true
 image: Visual Studio 2017
 #configuration:
@@ -7,7 +7,8 @@ image: Visual Studio 2017
 environment:
   release: Release
 build_script:
-- cmd: msbuild "C:\projects\nekotool\NekoTool.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration="Debug"; msbuild "C:\projects\nekotool\NekoTool.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration="Release";
+- cmd: msbuild "C:\projects\nekotool\NekoTool.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration="Debug"
+- cmd: msbuild "C:\projects\nekotool\NekoTool.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration="Release"
 before_build:
 - nuget restore
 - choco install opencover.portable
