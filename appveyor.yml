@@ -1,9 +1,11 @@
 version: 0.1.6.1
 skip_non_tags: true
 image: Visual Studio 2017
-configuration: Release
+configuration:
+- Debug
+- Release
 environment:
-  configuration: Release
+  release: Release
 before_build:
 - nuget restore
 - choco install opencover.portable
@@ -12,10 +14,10 @@ build:
   project: NekoTool.sln
   verbosity: minimal
 test_script:
-- OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\NekoToolTest\bin\Release\NekoToolTest.dll -noshadow" -filter:"+[NekoTool*]* -[NekoToolTest*]*" -output:".\test_coverage.xml"
+- OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\NekoToolTest\bin\Debug\NekoToolTest.dll -noshadow" -filter:"+[NekoTool*]* -[NekoToolTest*]*" -output:".\test_coverage.xml"
 - codecov -f "test_coverage.xml"
 artifacts:
-- path: NekoTool\bin\$(configuration)
+- path: NekoTool\bin\$(release)
   name: NekoTool-v$(appveyor_build_version)
 deploy:
 - provider: GitHub
