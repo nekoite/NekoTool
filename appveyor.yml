@@ -1,4 +1,4 @@
-version: 0.1.6.1
+version: 0.1.6.1-a
 skip_non_tags: true
 image: Visual Studio 2017
 configuration:
@@ -19,9 +19,10 @@ test_script:
 artifacts:
 - path: NekoTool\bin\$(release)
   name: NekoTool-v$(appveyor_build_version)
-deploy:
-- provider: GitHub
-  tag: v$(appveyor_build_version)
-  release: v$(appveyor_build_version)
-  auth_token:
-    secure: jQxrsBnP05pmmYqIGPMTXj+zU2Stshj8H83Vhc9fMDZYBw0QMHHAP4jfxK9oEP2M
+#deploy:
+#- provider: GitHub
+#  tag: v$(appveyor_build_version)
+#  release: v$(appveyor_build_version)
+#  auth_token:
+#    secure: jQxrsBnP05pmmYqIGPMTXj+zU2Stshj8H83Vhc9fMDZYBw0QMHHAP4jfxK9oEP2M
+deploy: off
